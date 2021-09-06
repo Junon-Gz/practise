@@ -1,5 +1,5 @@
 from django.db import models
-
+from datetime import datetime
 # Create your models here.
 class Stu(models.Model) :
     id = models.AutoField("学号",primary_key=True)
@@ -15,3 +15,9 @@ class Stu(models.Model) :
         db_table="stu"
         verbose_name = '浏览学生信息'
         verbose_name_plural = '学生信息管理'
+
+# class Users(models.Model):
+#     name = models.CharField("姓名",max_length=16)
+#     age = models.SmallIntegerField("年龄")
+#     phone = models.CharField("电话",max_length=16)
+#     addtime = models.DateTimeField("添加时间",default=datetime.now)
