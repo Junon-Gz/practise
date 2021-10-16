@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseNotFound
 from demo.models import Users
+import datetime
 # Create your views here.
 def index(request):
     #执行Model的操作
@@ -35,7 +36,7 @@ def index(request):
     # for u in ulist:
     #     print(u.id,u.name,u.age,u.phone,u.addtime)
 
-    return HttpResponse("首页 <br/> <a href='/users'>用户管理信息</a>")
+    return HttpResponse("首页 <br/> <a href='/users'>用户管理信息</a> <br/> <a href='/failure'>请求失败</a>")
 
 #浏览用户信息
 def indexUsers(request):
@@ -93,3 +94,18 @@ def updateUsers(request):
     except:
         context = {"info":"修改失败"}
     return render(request,"website/users/info.html",context)
+
+def current_datetime(request):
+    now = datetime.datetime.now()
+    html = "<html><body>It is now %s.</body></html>" % now
+    return HttpResponse(html)
+
+def failure(request):
+    # 直接返回一个404,没有去加载404的模板页面
+    return HttpResponseNotFound('<h1>Page not found</h1>')
+
+    # 可以直接返回一个status状态码
+    # return HttpResponse(status=403)
+
+    # 返回一个404的错误页面
+    # raise Http404("Poll does not exist")

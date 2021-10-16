@@ -9,5 +9,7 @@ urlpatterns = [
     path('users/insert', views.insertUsers,name="insertusers"),
     path('users/del/<int:uid>', views.delUsers,name="delusers"),
     path('users/edit/<int:uid>', views.editUsers,name="editusers"),
-    path('users/update', views.updateUsers,name="updateusers")
+    path('users/update', views.updateUsers,name="updateusers"),
+    path('users/current_datetime', views.current_datetime,name="current_datetime"),
+    path('failure', views.failure,name="failure")
 ]
