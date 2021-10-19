@@ -1,6 +1,6 @@
-
 from django.urls import path
 from . import views
+from demo.views import MyView
 urlpatterns = [
     path('', views.index,name="index"),
     #配置users信息操作路由
@@ -11,5 +11,7 @@ urlpatterns = [
     path('users/edit/<int:uid>', views.editUsers,name="editusers"),
     path('users/update', views.updateUsers,name="updateusers"),
     path('users/current_datetime', views.current_datetime,name="current_datetime"),
-    path('failure', views.failure,name="failure")
+    path('failure', views.failure,name="failure"),
+    path('redire', views.redire,name="redire"),
+    path('view', MyView.as_view(),name="view")
 ]

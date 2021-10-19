@@ -1,6 +1,8 @@
-from django.shortcuts import render
-from django.http import HttpResponse,HttpResponseNotFound
+from django.shortcuts import render,redirect
+from django.http import HttpResponse,HttpResponseNotFound,Http404
 from demo.models import Users
+from django.urls import reverse
+from django.views import View
 import datetime
 # Create your views here.
 def index(request):
@@ -36,7 +38,7 @@ def index(request):
     # for u in ulist:
     #     print(u.id,u.name,u.age,u.phone,u.addtime)
 
-    return HttpResponse("首页 <br/> <a href='/users'>用户管理信息</a> <br/> <a href='/failure'>请求失败</a>")
+    return render(request,"website/users/home.html")
 
 #浏览用户信息
 def indexUsers(request):
@@ -102,10 +104,26 @@ def current_datetime(request):
 
 def failure(request):
     # 直接返回一个404,没有去加载404的模板页面
-    return HttpResponseNotFound('<h1>Page not found</h1>')
+    # return HttpResponseNotFound('<h1>Page not found</h1>')
 
     # 可以直接返回一个status状态码
     # return HttpResponse(status=403)
 
     # 返回一个404的错误页面
-    # raise Http404("Poll does not exist")
+    raise Http404("Poll does not exist")
+
+def redire(request):
+    # redirect重定向  reverse反向解析url地址
+    return redirect(reverse('addusers'))
+
+    # 执行一段js代码，用js进行重定向
+    # return HttpResponse('<script>alert("添加成功");location.href = "/userindex"; </script>')
+
+    # 加载一个提醒信息的跳转页面
+    # context = {'info':'数据添加成功','u':'/userindex'}
+    # return render(request,'info.html',context)
+
+class MyView(View):
+
+    def get(self, request, *args, **kwargs):
+        return HttpResponse('Hello, views!')
