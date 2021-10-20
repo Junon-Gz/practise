@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from django.http import HttpResponse,HttpResponseNotFound,Http404
+from django.http import HttpResponse,HttpResponseNotFound,Http404,JsonResponse
 from demo.models import Users
 from django.urls import reverse
 from django.views import View
@@ -127,3 +127,21 @@ class MyView(View):
 
     def get(self, request, *args, **kwargs):
         return HttpResponse('Hello, views!')
+
+def jsonrespon(request):
+    data=[
+        {"id":1,"name":"zhangsan","age":22,"gender":1},
+        {"id":2,"name":"lisi","age":23,"gender":2},
+        {"id":3,"name":"wangwu","age":26,"gender":1}
+    ]
+    return JsonResponse({"data":data})
+
+def cookie(request):
+    # 获取当前的 响应对象
+    response = HttpResponse('cookie的设置')
+
+    # 使用响应对象进行cookie的设置
+    response.set_cookie('a','abc')
+
+    # 返回响应对象
+    return response

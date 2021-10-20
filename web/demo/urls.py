@@ -13,5 +13,7 @@ urlpatterns = [
     path('users/current_datetime', views.current_datetime,name="current_datetime"),
     path('failure', views.failure,name="failure"),
     path('redire', views.redire,name="redire"),
-    path('view', MyView.as_view(),name="view")
+    path('view', MyView.as_view(),name="view"),
+    path('jsn', views.jsonrespon,name="jsn"),
+    path('cookie', views.cookie,name="cookie")
 ]
