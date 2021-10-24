@@ -15,5 +15,8 @@ urlpatterns = [
     path('redire', views.redire,name="redire"),
     path('view', MyView.as_view(),name="view"),
     path('jsn', views.jsonrespon,name="jsn"),
-    path('cookie', views.cookie,name="cookie")
+    path('cookie', views.cookie,name="cookie"),
+    path('test_request', views.test_request,name="test_request"),
+    path('verifycode', views.verifycode,name="verifycode"),
+    path('demo1', views.demo1,name="demo1")
 ]
