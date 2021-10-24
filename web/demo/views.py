@@ -142,6 +142,16 @@ def cookie(request):
 
     # 使用响应对象进行cookie的设置
     response.set_cookie('a','abc')
+    
+    m = request.COOKIES.get('a',None)
+    if m:
+        m = int(m)+1
+    else:
+        m = 1
+    # 获取当前的 响应对象
+    response = HttpResponse('cookie记录的计数器值：'+str(m))
+    # 使用响应对象进行cookie的设置
+    response.set_cookie('a',m)
 
     # 返回响应对象
     return response
